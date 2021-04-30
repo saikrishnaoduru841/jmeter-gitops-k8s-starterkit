@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: jmeter-master
+  labels:
+    jmeter_mode: master
+spec:
+  backoffLimit: 0
+  completions: 1
+  template:
+    metadata:
+      labels:
+        jmeter_mode: master
+    spec:
+      containers:
+      - name: jmeter-master
+        image: rbillon59/jmeter-k8s-gitops:my-scenario
+        imagePullPolicy: Always
+        env:
+        - name: MODE
+          value: "MASTER"
+        ports:
+        - containerPort: 60000
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "128m"
+          limits:
+            memory: "512Mi"
+            cpu: "256m"
+        livenessProbe:
+          exec:
+            command:
+            - cat
+            - /bin/bash
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      restartPolicy: Never

@@ -26,7 +26,7 @@ if [ "${MODE}" == "SLAVE" ]; then
 
             # Getting the right file 
             jvm_id=$(echo "$(hostname)" | awk -F "-" '{print $3}')
-            cp "/tmp/split/${jvm_id}" "${jmeter_path}/${csvFileFull}"
+            cp "/tmp/split/${jvm_id}" "${jmeter_path}/${csvfile}"
     done
 
     echo "Starting $(hostname)"

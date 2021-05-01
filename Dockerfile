@@ -1,5 +1,5 @@
-ARG JMETER-VERSION
-FROM rbillon59/jmeter-k8s-base:${JMETER-VERSION}
+ARG JMETER_VERSION
+FROM rbillon59/jmeter-k8s-base:${JMETER_VERSION}
 
 
 ARG PROJECT
